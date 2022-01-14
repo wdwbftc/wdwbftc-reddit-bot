@@ -1,0 +1,8 @@
+# General
+.idea/
+venv/
+__pycache__/
+
+# Application
+logs/
+config.json

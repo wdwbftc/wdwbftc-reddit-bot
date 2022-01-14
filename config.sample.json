@@ -1,0 +1,52 @@
+{
+  "authentication": {
+    "client_id": "",
+    "client_secret": "",
+    "username": "",
+    "password": "",
+    "user_agent": ""
+  },
+  "settings": {
+    "test_run": false,
+    "loop_minutes": 5
+  },
+  "conditions": [
+    {
+      "subreddits": ["kappa"],
+      "check_subreddits": [
+        "smashbros",
+        "supersmashbros",
+        "casualsmash",
+        "ssb64",
+        "ssbm",
+        "ssbb",
+        "sm4sh",
+        "smashbrosultimate",
+        "ssbpm",
+        "smashmemes",
+        "smashcirclejerk",
+        "projectmdiedforthis",
+        "spongebros",
+        "imgoingtobrawlforthis",
+        "projectcirclejerk",
+        "crazyhand",
+        "smashart",
+        "smashgifs",
+        "customsmash",
+        "smashbros34",
+        "smash_thoughts",
+        "smashdebate",
+        "brawlhawlla",
+        "iconsgg",
+        "rivalsofaeather",
+        "slapcity",
+        "brawlout",
+        "airdashonline"
+      ],
+      "message": "Warning: Smasher identified. OP is a known poster of Smash-related subreddit(s). Please take caution when discussing topics such as fighting games and daily hygiene as they are likely not experts in the subject. Thank you. [^source](https://github.com/wdwbftc/wdwbftc-reddit-bot)",
+      "check_messages": ["Warning: Smasher identified"],
+      "expiration_days": 365,
+      "new_posts_minutes": 1440
+    }
+  ]
+}
