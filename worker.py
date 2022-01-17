@@ -16,9 +16,9 @@ class Worker:
         self.poster = Poster(config)
 
     def process(self):
-        self.logger.info(f'Processing started')
+        self.logger.debug(f'Processing started')
         for condition in self.config['conditions']:
-            self.logger.info(f'Processing condition')
+            self.logger.debug(f'Processing condition')
             if not condition['check_subreddits']:
                 self.logger.debug(f'No subreddits to check')
                 continue
@@ -27,7 +27,7 @@ class Worker:
             for subreddit in condition['subreddits']:
                 self.logger.debug(f'Checking subreddit: {subreddit}')
                 self.process_subreddit(condition, subreddit)
-        self.logger.info(f'Processing ended')
+        self.logger.debug(f'Processing ended')
 
     def process_subreddit(self, condition: dict, subreddit: str):
         subreddits_recent = condition['subreddits_recent']
