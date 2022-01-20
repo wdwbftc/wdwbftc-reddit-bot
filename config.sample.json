@@ -41,7 +41,10 @@
         "rivalsofaeather",
         "slapcity",
         "brawlout",
-        "airdashonline"
+        "airdashonline",
+        "allstarbrawl",
+        "nickallstarbrawl",
+        "competitiveasb"
       ],
       "message": "Warning: Smasher identified. OP is a known poster of Smash-related subreddit(s). Please take caution when discussing topics such as fighting games and daily hygiene as they are likely not experts in the subject. Thank you. [^source](https://github.com/wdwbftc/wdwbftc-reddit-bot)",
       "check_messages": ["Warning: Smasher identified"],
