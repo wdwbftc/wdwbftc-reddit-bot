@@ -2,6 +2,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 
 import praw
+import prawcore
 from praw.models import Redditor
 
 from poster import Poster
@@ -59,18 +60,12 @@ class Worker:
     def has_posts(self, condition: dict, author: Redditor) -> bool:
         subreddits = list(map(lambda x: x.lower(), condition['check_subreddits']))
         self.logger.debug(f'Checking posts for user: {author.name}')
-        return self.has_comments(condition, author, subreddits) or self.has_submissions(condition, author, subreddits)
-
-    def has_comments(self, condition: dict, author: Redditor, subreddits: list) -> bool:
-        self.logger.debug(f'Checking comments for user: {author.name}')
-        for comment in author.comments.new(limit=None):
-            if comment.created_utc < self.get_utc(timedelta(days=condition['expiration_days'])):
-                self.logger.debug('Reached date limit in author comments')
-                return False
-            if comment.subreddit.display_name.lower() in subreddits:
-                self.logger.debug(f'Found comment: {comment.permalink}')
-                return True
-        return False
+        try:
+            return self.has_submissions(condition, author, subreddits) or \
+                   self.has_comments(condition, author, subreddits)
+        except prawcore.NotFound as e:
+            self.logger.error(f'PRAW Not Found exception occurred while checking user {author.name}: {e}')
+            return False
 
     def has_submissions(self, condition: dict, author: Redditor, subreddits: list):
         self.logger.debug(f'Checking submissions for user: {author.name}')
@@ -80,6 +75,17 @@ class Worker:
                 return False
             if submission.subreddit.display_name.lower() in subreddits:
                 self.logger.debug(f'Found submission: {submission.permalink}')
+                return True
+        return False
+
+    def has_comments(self, condition: dict, author: Redditor, subreddits: list) -> bool:
+        self.logger.debug(f'Checking comments for user: {author.name}')
+        for comment in author.comments.new(limit=None):
+            if comment.created_utc < self.get_utc(timedelta(days=condition['expiration_days'])):
+                self.logger.debug('Reached date limit in author comments')
+                return False
+            if comment.subreddit.display_name.lower() in subreddits:
+                self.logger.debug(f'Found comment: {comment.permalink}')
                 return True
         return False
 
