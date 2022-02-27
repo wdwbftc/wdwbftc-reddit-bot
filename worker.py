@@ -67,7 +67,7 @@ class Worker:
             self.logger.error(f'PRAW Not Found exception occurred while checking user {author.name}: {e}')
             return False
 
-    def has_submissions(self, condition: dict, author: Redditor, subreddits: list):
+    def has_submissions(self, condition: dict, author: Redditor, subreddits: list) -> bool:
         self.logger.debug(f'Checking submissions for user: {author.name}')
         for submission in author.submissions.new(limit=None):
             if submission.created_utc < self.get_utc(timedelta(days=condition['expiration_days'])):
