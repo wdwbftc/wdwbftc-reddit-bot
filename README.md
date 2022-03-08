@@ -1,19 +1,21 @@
-# Description
+# WDWBFTC Reddit Bot
+
+## Description
 
 Reddit bot to submit comment on posts where the author has posted comments in certain subreddits in the past. 
 
-## Disclaimer
+### Disclaimer
 
 The author of this application may not be held liable for Reddit application or user ban resulting from using this application.
 
 Please use it responsibly and within reason. 
 
-# Pre-requisites
+## Pre-requisites
 
 * Python 3.9 or newer.
 * Install required libraries with: `pip install -r requirements.txt`
 
-# Set-up
+## Set-up
 
 1. Create Reddit user account.
 2. Create Reddit application based on the [Creating Reddit application](#creating-reddit-application) section below.
@@ -21,7 +23,7 @@ Please use it responsibly and within reason.
    * `config.sample.json` will be copied to `config.json` and the application will exit.
 4. Fill `config.json` based on the [Configuration](#configuration) section below.
 
-## Creating Reddit application
+### Creating Reddit application
 
 1. Create application: 
    * https://www.reddit.com/prefs/apps
@@ -44,7 +46,7 @@ Please use it responsibly and within reason.
    * OAUTH Client ID(s): <provide client ID from step 1>
    * Send
 
-## Configuration
+### Configuration
 
 * `config.json`
   * `authentication`
@@ -67,12 +69,17 @@ Please use it responsibly and within reason.
 
 ![Figure A](Figure_B.png)
 
-# Usage
+## Usage
 
 * Run with `py main.py` after performing [Pre-requisites](#pre-requisites), [Set-up](#set-up) sections above. 
 * If `loop` configuration is set to value other than `0`, exit with keyboard interrupt (e.g. Ctrl + C). 
 
-# Additional documentation
+## Notes
+
+* Newly registered application might need a certain amount of time before it is granted access to the API.
+* Newly registered Reddit user might need a certain amount of time and/or karma before its comments become visible for other users, based on the subreddit's rules.
+
+## Additional documentation
 
 * Reddit API access documentation: https://www.reddit.com/wiki/api
 * Reddit API documentation: https://github.com/reddit-archive/reddit/wiki/API
